@@ -17,7 +17,8 @@ pipeline {
             steps {
                 script {
                 
-                    sh "aws s3 cp dist/ s3://bucketmul/dist/ "
+                    sh "aws s3 sync . s3://bucketmul/"
+                     
                 }
             }
         }
