@@ -22,9 +22,10 @@ pipeline {
         stage('Invalidate CloudFront Cache') {
             steps {
                 script {
-        
+                     withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'awsid']]){
                         sh "aws cloudfront create-invalidation --distribution-id E1PYIH7BN20DN3 --paths '/*'"
                     }
+                  }
                 }
             }
         }
