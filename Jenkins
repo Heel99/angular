@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
         
-                        sh "aws cloudfront create-invalidation --distribution-id ${CLOUDFRONT_DISTRIBUTION_ID} --paths '/*'"
+                        sh "aws cloudfront create-invalidation --distribution-id E1PYIH7BN20DN3 --paths '/*'"
                     }
                 }
             }
