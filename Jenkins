@@ -13,9 +13,10 @@ pipeline {
         stage('Upload to S3') {
             steps {
                 script {
-                
+                  withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'awsid']]){
                     sh "aws s3 sync . s3://bucketmul/"
                     }     
+                  }
                 }
             }
         stage('Invalidate CloudFront Cache') {
