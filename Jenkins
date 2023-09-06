@@ -1,8 +1,5 @@
 pipeline {
     agent any
-      tools {
-        nodejs 'nodejs 14' 
-    }
 
     stages {
        
@@ -18,11 +15,18 @@ pipeline {
                 script {
                 
                     sh "aws s3 sync . s3://bucketmul/"
-                     
+                    }     
+                }
+            }
+        stage('Invalidate CloudFront Cache') {
+            steps {
+                script {
+        
+                        sh "aws cloudfront create-invalidation --distribution-id ${CLOUDFRONT_DISTRIBUTION_ID} --paths '/*'"
+                    }
                 }
             }
         }
-    }
 
     post {
         success {
